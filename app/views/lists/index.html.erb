@@ -1,8 +1,8 @@
 <header>
   <div class="jumbotron">
-<h1 class="display-4">My movies list</h1>
-<p class="lead">Simple way to manage your movies</p>
-    </div>
+    <h1 class="display-4">My movies list</h1>
+    <p class="lead">Simple way to manage your movies</p>
+  </div>
 </header>
 
 
@@ -16,12 +16,17 @@
 
   <tbody>
     <% @lists.each do |list| %>
-      <tr>
-        <td><%= list.name %></td>
-        <%= cl_image_tag list.photo.key %>
-        <td><%= link_to 'Show', list %></td>
-        <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <tr>
+      <td><%= list.name %></td>
+      <% if list.photo.attached? %>
+      <%= cl_image_tag list.photo.key %>
+      <% else %>
+      <%= image_tag "placeholder.jpg", alt: "placeholder" %>
+
+      <% end %>
+      <td><%= link_to 'Show', list %></td>
+      <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
     <% end %>
   </tbody>
 </table>
