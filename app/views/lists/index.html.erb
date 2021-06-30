@@ -23,7 +23,7 @@
           <p class="text-3xl pb-4 font-bold text-white uppercase bg-black bg-opacity-80">
             <%= list.name %>
           </p>
-          <div >
+          <div>
             <% if list.photo.attached? %>
             <%= cl_image_tag list.photo.key %>
             <% else %>
