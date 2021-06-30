@@ -1,36 +1,44 @@
-<header>
-  <div class="jumbotron">
-    <h1 class="display-4">My movies list</h1>
-    <p class="lead">Simple way to manage your movies</p>
+<body>
+  <div class="grid grid-rows-1 grid-cols-1 ">
+    <div class="hero pt-32 col-start-1 row-start-1 z-0">
+    </div>
+    <div class="container pb-32 pt-16 mx-32 px-6 col-start-1 row-start-1 z-10">
+      <h2 class="text-6xl font-bold mb-2 text-white uppercase">
+        My Movies List
+      </h2>
+      <h3 class="text-2xl mb-20 text-gray-200">
+        Time to try front!
+      </h3>
+      <button class="bg-transparent border-4 border-solid border-white transition duration-500 ease-in-out hover:border-red-600 text-white text-2xl font-bold rounded py-4 px-16 shadow-lg uppercase tracking-wider">
+        <i class="fas fa-plus"></i><%= link_to ' New List', new_list_path %>
+      </button>
+    </div>
+
   </div>
-</header>
-
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <body>
-    <% @lists.each do |list| %>
-    <tr>
-      <td><%= list.name %></td>
-      <% if list.photo.attached? %>
-      <%= cl_image_tag list.photo.key %>
-      <% else %>
-      <%= image_tag "placeholder.jpg", alt: "placeholder" %>
-
+  <div class="container my-12 mx-auto md:px-12">
+    <div class="flex flex-wrap -mx-auto lg:-mx-4 gap-8">
+      <% @lists.each do |list| %>
+      <div class="relative my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/4 transition duration-500 ease-in-out border-white rounded border-solid hover:border-transparent border-2 text-center">
+        <div>
+          <p class="text-3xl pb-4 font-bold text-white uppercase bg-black bg-opacity-80">
+            <%= list.name %>
+          </p>
+          <div >
+            <% if list.photo.attached? %>
+            <%= cl_image_tag list.photo.key %>
+            <% else %>
+            <%= image_tag "placeholder.jpg", alt: "placeholder" %>
+            <% end %>
+          </div>
+         <div class=" space-x-24 text-3xl pb-4 font-bold text-white uppercase bg-black bg-opacity-80">
+         <div class="bg-black bg-opacity-80 pt-2 pb-2 absolute inset-x-0 bottom-2 space-x-24"><%= link_to raw('<i class="fas fa-eye hover:text-red-600 transition duration-500 ease-in-out"></i>'), list %>
+         <%= link_to raw('<i class="fas fa-trash-alt hover:text-red-600 transition duration-500 ease-in-out"></i>'), list, method: :delete, data: { confirm: 'Are you sure?' } %>
+       </div>
+        </div>
+      </div>
+    </div>
       <% end %>
-      <td><%= link_to 'Show', list %></td>
-      <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-    <% end %>
-  </body>
-</table>
+    </div>
+  </div>
+</body>
 
-<br>
-
-<%= link_to 'New List', new_list_path %>
