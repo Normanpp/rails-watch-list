@@ -1,46 +1,25 @@
-<body>
-  <div class="grid grid-rows-1 grid-cols-1 ">
-    <div class="hero pt-32 col-start-1 row-start-1 z-0">
-    </div>
-    <div class="container pb-32 pt-16 mx-40 px-6 col-start-1 row-start-1 z-10">
-      <h2 class="text-6xl font-bold mb-2 text-white uppercase">
-        My Movies List
-      </h2>
-      <h3 class="text-2xl mb-20 text-gray-200">
-        Time to try front!
-      </h3>
-      <button class="bg-transparent border-4 border-solid border-white transition duration-500 ease-in-out hover:border-red-600 text-white text-2xl font-bold rounded py-4 px-16 shadow-lg uppercase tracking-wider">
-        <i class="fas fa-plus"></i><%= link_to ' New List', new_list_path %>
-      </button>
-    </div>
 
+<div class="grid grid-rows-1 grid-cols-1 ">
+  <div class="hero pt-32 col-start-1 row-start-1 z-0">
   </div>
-  <div class="container my-8 mx-auto">
-    <div class="flex flex-wrap -mx-2 overflow-hidden sm:-mx-3 md:-mx-3 lg:-mx-2 xl:-mx-2">
-      <% @lists.each do |list| %>
-      <%= link_to list do %>
-      <div class="relative my-2 px-2 w-1/4 overflow-hidden sm:my-3 sm:px-3 sm:w-full md:my-3 md:px-3 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-2 xl:px-2 xl:w-1/6 transition duration-500 ease-in-out border-white rounded border-solid hover:border-transparent border-2 text-center">
-        <div>
-          <p class="pt-2 absolute inset-x-0 top-0 text-3xl pb-4 font-bold text-white uppercase bg-black bg-opacity-80">
-            <%= list.name %>
-          </p>
-          <div>
-            <% if list.photo.attached? %>
-            <%= cl_image_tag list.photo.key %>
-            <% else %>
-            <%= image_tag "placeholder.jpg", alt: "placeholder" %>
-            <% end %>
-          </div>
-          <div class="text-3xl pb-4 font-bold text-white uppercase bg-black bg-opacity-80">
-           <div class="bg-black bg-opacity-80 pt-2 pb-2 absolute inset-x-0 bottom-2">
-             <%= link_to raw('<i class="fas fa-trash-alt hover:text-red-600 transition duration-500 ease-in-out"></i>'), list, method: :delete, data: { confirm: 'Are you sure?' } %>
-           </div>
-         </div>
-       </div>
-     </div>
-     <% end %>
-     <% end %>
-   </div>
- </div>
-</body>
+  <div class="container pb-32 pt-16 mx-40 px-6 col-start-1 row-start-1 z-10">
+    <h2 class="text-6xl font-bold mb-2 text-white uppercase">
+      My Movies List
+    </h2>
+    <h3 class="text-2xl mb-20 text-gray-200">
+      Time to try front!
+    </h3>
+    <button class="bg-transparent border-4 border-solid border-white transition duration-500 ease-in-out hover:border-red-600 text-white text-2xl font-bold rounded py-4 px-16 shadow-lg uppercase tracking-wider">
+      <i class="fas fa-plus"></i><%= link_to ' New List', new_list_path %>
+    </button>
+  </div>
+</div>
+
+<div class="container my-8 mx-auto">
+  <div class="flex flex-wrap -mx-2 gap-x-2 overflow-hidden sm:-mx-3 md:-mx-3 lg:-mx-2 xl:-mx-2">
+    <% @lists.each do |list| %>
+    <%= render "list", list: list %>
+    <% end %>
+  </div>
+</div>
 

@@ -1,12 +1,11 @@
 class BookmarksController < ApplicationController
-  before_action :set_bookmark, only: %i[ show edit destroy ]
+  before_action :set_bookmark, only: %i[show edit destroy]
 
   # GET /bookmarks or /bookmarks.json
   def index
     @bookmarks = Bookmark.all
   end
 
-  # GET /bookmarks/1 or /bookmarks/1.json
   def show
   end
 
